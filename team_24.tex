@@ -1,4 +1,4 @@
-% Created 2016-05-02 Mon 16:36
+% Created 2016-05-02 Mon 18:19
 \documentclass[11pt]{article}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
@@ -36,27 +36,21 @@
 
 \section{INTRODUCTION}
 \label{sec-1}
-\subsection{History of Apache}
-\label{sec-1-1}
 
-   The Apache HTTP server is an open source project which was built
-   collaboratively by 8 contributors often known as the core
-   contributors. The software development was aimed at creating a robust,
-   commercial-grade, and featureful implementation of an HTTP server. Now
-   the organization has evolved and has a large number of committers who
-   are given access to the source code of the repositories to help
-   maintain the project or its relevant docs.  The core group now manages
-   the project and is called the Project management Committee (PMC for
-   short). The name Apache was chosen as a sign of respect for the native
-   American Indian tribe of Apache, well known for their superior skills
-   in warfare strategy and inexhaustible endurance. It also makes a cute
-   pun on ``a patchy web server'' -- a server made from a series of
-   patches. The group of developers who released this new software soon
-   started to call themselves the ``Apache Group''.
-\subsection{Uses}
-\label{sec-1-2}
-
-   The apache web server is used for hosting web sites. 
+  The Apache HTTP server is an open source project which was built
+  collaboratively by 8 contributors often known as the core
+  contributors. The software development was aimed at creating a robust,
+  commercial-grade, and featureful implementation of an HTTP server. Now
+  the organization has evolved and has a large number of committers who
+  are given access to the source code of the repositories to help
+  maintain the project or its relevant docs.  The core group now manages
+  the project and is called the Project management Committee (PMC for
+  short). The name Apache was chosen as a sign of respect for the native
+  American Indian tribe of Apache, well known for their superior skills
+  in warfare strategy and inexhaustible endurance. It also makes a cute
+  pun on ``a patchy web server'' -- a server made from a series of
+  patches. The group of developers who released this new software soon
+  started to call themselves the ``Apache Group''.
 \section{REQUIREMENTS AND QUALITIES}
 \label{sec-2}
 \subsection{Feature overview}
@@ -74,16 +68,16 @@ title (mod$_{\mathrm{rewrite}}$), the special log file (mod$_{\mathrm{log}}$$_{\
 support for the candidate ( mod$_{\mathrm{include}}$ responsible and
 mod$_{\mathrm{ext}}$$_{\mathrm{filter}}$).
 
-Some of Apache¡¯s popular compression methods, including external
+Some of Apache's popular compression methods, including external
 expansion modules, mod$_{\mathrm{gzip}}$ are implemented to help reduce the size
 (weight) of web pages via HTTP. ModSecurity is an open source Web
 intrusion detection and prevention of the engine application. Apache
-logs can be analysed using free scripts such as AWStats software /
+logs can be analyzed using free scripts such as AWStats software /
 W3Perl or Visitors through a Web browser.
 
 Virtual hosting allows an Apache installation to serve many different
 sites. For example, single installation can serve www.example.com,
-www.example.org, test47.test-server.example.edu etc. simulateonusly.
+www.example.org, test47.test-server.example.edu etc. simultaneously.
 
 
 Apache has error messages that are configurable, with the
@@ -96,8 +90,9 @@ needs, also there is a library of Apache plug-ins.
 \subsection{Functional Requirements}
 \label{sec-2-2}
 
+
 \begin{itemize}
-\item URI to filename translation
+\item URI to file name translation
 \item Several phases involved with access control
 \item Determining the MIME type of the requested entity
 \item Actually sending data back to the
@@ -124,7 +119,7 @@ Handling of static files, index files, auto-indexing and content negotiation
 Reverse proxy with caching
 Load balancing with in-band health checks
 Multiple load balancing mechanisms
-Fault tolerance and Failover with automatic recovery
+Fault tolerance and Fail over with automatic recovery
 WebSocket, FastCGI, SCGI, AJP and uWSGI support with caching
 Dynamic configuration
 TLS/SSL with SNI and OCSP stapling support, via OpenSSL.
@@ -168,7 +163,7 @@ XML support
     for special purposes, the Multi-Processing Module (MPM), is working
     to improve the Apache to the underlying operating system. It must be
     the MPM that usually is the only unit to gain access to another
-    operating system through APR.
+    operating system through APR \cite{apache-platform-arch}.
 
     \begin{figure}[htb]
     \centering
@@ -206,36 +201,17 @@ XML support
    loads it in the startup phase may want to do this only once, and
    therefore, it must use a technique such as setting and checking of
    a static flag to ensure it¡¯s creation of one-time only.
-\subsubsection{Start-up Phase}
-\label{sec-3-2-1}
+\subsection{Start-up Phase}
+\label{sec-3-3}
 
-    The purpose of the startup of the Apache is to read the
-    configuration, load modules, libraries, and create the necessary
-    resources. Each unit may have its own resources, and has an
-    opportunity to create those resources. In the startup phase,
-    Apache runs as a single process,single-thread program and has root
-    privileges.
-\begin{itemize}
-
-\item Configuration\\
-\label{sec-3-2-1-1}%
-The main configuration file in Apache is usually called as
-     httpd.conf file. However, this is just a convention, a
-     third-party Apache distribution such as those provided as .rpm or
-     .deb packages may use different nomenclature.In addition, it may
-     be a single file, or may be divided into multiple files using the
-     Include guidance to include various configuration files. Some
-     distributions have a very complex configurations.For example,
-     Debian GNU/Linux Apache configuration, relies heavily on the
-     familiarity with Debian, not with Apache. The configuration file
-     httpd.conf file is a plain text file which is analysed line by
-     line at server startup. The contents of the file include
-     directives, containers, and comments. It also allows empty lines
-     and leading whitespaces, but will be ignored.
-
-\end{itemize} % ends low level
+   The purpose of the startup of the Apache is to read the
+   configuration, load modules, libraries, and create the necessary
+   resources. Each unit may have its own resources, and has an
+   opportunity to create those resources. In the startup phase,
+   Apache runs as a single process,single-thread program and has root
+   privileges.
 \subsubsection{Operational Phase}
-\label{sec-3-2-2}
+\label{sec-3-3-1}
 
     At the end of the start-up stage,the control passes to the
     Multi-Processing Module(MPM). The MPM is responsible for managing
@@ -255,13 +231,13 @@ The main configuration file in Apache is usually called as
     in principle, to implement a completely different system-level
     server architecture.
 \subsubsection{Shutdown}
-\label{sec-3-2-3}
+\label{sec-3-3-2}
 
     There is no shutdown phase as such. Instead, anything that needs
     be done on shutdown is registered as a cleanup. When Apache stops,
     all registered cleanups are run.
 \subsection{Multi-Processing Modules}
-\label{sec-3-3}
+\label{sec-3-4}
 
    At the end of the start-up phase, having been read configuration,
    full control of the Apache passes to a Multi-Processing Module. MPM
@@ -272,21 +248,22 @@ The main configuration file in Apache is usually called as
    is a unique systems level (even the development of MPM is outside
    the scope of a book about the development of applications).  Also
    uniquely, Apache instance contains single MPM, which is determined
-   at build-time. An MPM¡¯s responsibilites are located inside the main
-   loops of the Apache. The main server does the initialization and
-   configuration for processing before calling ap$_{\mathrm{mpm}}$$_{\mathrm{run}}$() function
-   in main() to be delivered to MPM.It is the responsibility of the
-   MPM to take care of starting the threads and / or processes as
-   required. MPM will also be responsible for listening on sockets for
-   incoming requests. Upon the arrival of requests, the MPM
+   at build-time. An MPM's responsibilities are located inside the
+   main loops of the Apache. The main server does the initialization
+   and configuration for processing before calling ap$_{\mathrm{mpm}}$$_{\mathrm{run}}$()
+   function in main() to be delivered to MPM.It is the responsibility
+   of the MPM to take care of starting the threads and / or processes
+   as required. MPM will also be responsible for listening on sockets
+   for incoming requests. Upon the arrival of requests, the MPM
    distributes them between the threads and/or processes that have
    been created. And then run the Apache standard procedures for
    request handling. When you restart or shut down, the MPM delivered
    back to the main server.  So,each server functionality is still the
    same for any MPM, but the multi-processing model
    interchangeable. The figure below shows the responsibility of
-   Apache MPM in the general behavior of the Apache. The dotted line
-   represents the actions of MPM takes responsibility.
+   Apache MPM in the general behavior of the Apache
+   \cite{multi-tasking}. The dotted line represents the actions of MPM
+   takes responsibility.
 
    \begin{figure}[htb]
    \centering
@@ -294,7 +271,7 @@ The main configuration file in Apache is usually called as
    \caption{Responsibility of an Apache 2.0 MPM}
    \end{figure}
 \subsection{The leader-followers pattern}
-\label{sec-3-4}
+\label{sec-3-5}
 
   The preforking structure is based on a set of tasks (processes or
   threads) that play three different roles:
@@ -318,7 +295,7 @@ The main configuration file in Apache is usually called as
   to become the listener. Usually an idle worker task will be
   suspended.  
 \subsection{Preforking Architecture}
-\label{sec-3-5}
+\label{sec-3-6}
 
 
   The the first multi-tasking architecture of Apache was Preforking
@@ -331,7 +308,7 @@ The main configuration file in Apache is usually called as
   itself. This makes Preforking stable architecture but also reduces
   performance. The following figure shows how the Apache Web Server
   provides a powerful multi-processing module, which is based on
-  preforking process, Apache-MPM prefork.
+  preforking process, Apache-MPM prefork \cite{multi-tasking}.
 
 
   \begin{figure}[htb]
@@ -407,11 +384,11 @@ Amy Brown and Greg Wilson.
 \begin{center}
 \begin{tabular}{ll}
 \hline
- Name     &  Time spent  \\
+ Team member  &  Time spent  \\
 \hline
- Ashwini  &  7 hrs       \\
- Deepak   &  7 hrs       \\
- Soumya   &  7 hrs       \\
+ Ashwini      &  7 hrs       \\
+ Deepak       &  7 hrs       \\
+ Soumya       &  7 hrs       \\
 \hline
 \end{tabular}
 \end{center}
